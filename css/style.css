@@ -1,0 +1,135 @@
+body {
+    padding: 0;
+    margin: 0;   
+    background-color: white;
+    text-align: center;
+}
+
+/*KEYBOARD*/
+#keyboard{
+	background-color: #373737;
+	height: auto;
+	width: 510px;
+	margin: 0 auto;
+	border-radius: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-top: 20px;
+}
+
+#keyboard div.row1{
+	margin: 0 auto;
+	width: 500px;
+	height: 50px;
+	margin-bottom: 2px;
+}
+
+#keyboard div.row2{
+	margin: 0 auto;
+	width: 450px;
+	height: 50px;
+	margin-bottom: 2px;
+}
+
+#keyboard div.row3{
+	margin: 0 auto;
+	width: 350px;
+	height: 50px;
+	margin-bottom: 2px;
+}
+
+.key{
+	cursor: pointer;
+	height: 40px;
+	width: 40px;
+	border-radius: 5px;
+	background-color: whitesmoke;
+	color: #373737;
+	margin: 5px;
+	font-size: 15px;
+	float: left;
+	line-height: 40px;
+	font-family: sans-serif;
+}
+
+.key:hover{
+	background-color: white;
+}
+
+.key:active{
+	background-color: darkgray;
+}
+
+/*LIGHTBOARD*/
+#lightboard{
+	background-color: whitesmoke;
+	height: 125px;
+	width: 400px;
+	margin: 0 auto;
+	border-radius: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-top: 20px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: gray;
+}
+
+#lightboard div.row1{
+	margin: 0 auto;
+	width: 380px;
+	height: 30px;
+	margin-bottom: 1px;
+}
+
+#lightboard div.row2{
+	margin: 0 auto;
+	width: 342px;
+	height: 30px;
+	margin-bottom: 1px;
+}
+
+#lightboard div.row3{
+	margin: 0 auto;
+	width: 266px;
+	height: 30px;
+	margin-bottom: 1px;
+}
+
+.light{	
+	height: 30px;
+	width: 30px;
+	border-radius: 100%;
+	background-color: white;
+	color: #373737;
+	margin: 4px;
+	font-size: 12px;
+	float: left;
+	line-height: 30px;
+	font-family: sans-serif;
+	border-style: solid;
+	border-width: 1px;
+	border-color: gray;
+}
+
+.light-on{
+	background-color: red;
+	color: white;
+}
+
+/*OUTPUT*/
+#output{
+	margin: 0 auto;
+	width: 90%;
+	height: 100px;
+	border-radius:5px;
+	font-family: cursive;
+	background-color: #f1dea5;
+	color: black;
+	font-weight: bold;
+	margin-top: 100px;
+	line-height: 100px;
+	overflow: auto;
+}
+
+
