@@ -2,7 +2,7 @@
 //-----------------------------------------------
 function Rotor(){	
 	this.arr = getAlphabets();	
-	this.level = 0;	
+	this.level = 1;		
 }
 
 Rotor.prototype.levelUp = function(){
@@ -21,20 +21,14 @@ Rotor.prototype.levelUp = function(){
 
 	this.arr = n;
 	this.level++;
-
-	if(this.level > this.arr.length) this.level = 0;
 }
 
-Rotor.prototype.get = function(code){
-	this.levelUp();	
+Rotor.prototype.get = function(code){	
 	return this.arr[getAlphabets().indexOf(code)];
 }
 
 Rotor.prototype.set = function(l){
-	
-	for(var i=0; i<l; i++){
-		this.levelUp();
-	}	
+	this.level = l;	
 	console.log("level set to " + this.level + " : " + l);
 }
 //ROTOR END---------------------------------------
@@ -89,27 +83,40 @@ Plugboard.prototype.set = function(p1, p2){
 //------------------------------------------------
 function Enigma(){
 
-	//rotor 1
-	this.r1 = new Rotor();
-	this.r1.set(random(0,26));
+	//rotor 3
+	this.r3 = new Rotor();
+	this.r3.set(random(0,26));
 
 	//rotor 2
 	this.r2 = new Rotor();
 	this.r2.set(random(0,26));
 
-	//rotor 3
-	this.r3 = new Rotor();
-	this.r3.set(random(0,26));
-
-
+	//rotor 1
+	this.r1 = new Rotor();
+	this.r1.set(random(0,26));
+	
 	//rotor plugboard
 	this.plugboard = new Plugboard();
+
+	
 }
 
 Enigma.prototype.input = function(code){
 	var round1 = this.plugboard.get(this.r3.get(this.r2.get(this.r1.get(code))));
-
 	var round2 = this.plugboard.get(this.r1.get(this.r2.get(this.r3.get(round1))));
+
+	//rotate rotors
+	this.r1.levelUp();
+	if(this.r1.level > 26){
+		this.r2.levelUp();
+		this.r1.level = 1;
+		if(this.r2.level > 26){
+			this.r3.levelUp();
+			this.r2.level = 1;
+			if(this.r3.level > 26) this.r3.level = 1;
+		}
+	}
+	
 
 	return round2;
 }

@@ -9,24 +9,53 @@
 
 <body>
 
-<div id="info">
-</div>
+<div class="enigma">
 
-<div id="output">
+	<div id="info"></div>
 
-</div>
-
-	<div id="lightboard"></div>
-	<div id="keyboard"></div>
-
-	<div id="plugboard">
-		<div class="plug">
-			<div class="slot1">
-			</div>
-			<div class="slot2">
-			</div>
+	<div class="rotor-container">
+		<div class="rotor" id="rotor1">
+			<div class="inner"></div>
+			<div class="outer"></div>
+		</div>
+		<div class="rotor" id="rotor2">
+			<div class="inner"></div>
+			<div class="outer"></div>
+		</div>
+		<div class="rotor" id="rotor3">
+			<div class="inner"></div>
+			<div class="outer"></div>
 		</div>
 	</div>
+
+	<div id="output"></div>
+	<div id="lightboard"></div>
+	<div id="keyboard"></div>
+	<div id="plugboard"></div>
+
+	<div class="control-panel">
+		<div class="control-button" id="clear">Clear</div>
+		<div class="control-button" id="config">Config</div>
+	</div>
+
+	<div id="back">
+		<div class="config-title">
+			Configurations
+			
+		</div>
+
+
+		<div class="config-window">
+		<div id="config-close">X</div>
+			<label>Rotors : </label>
+			<input type="text" class="rotor-input" id="1" />
+			<input type="text" class="rotor-input" id="2" />
+			<input type="text" class="rotor-input" id="3" />
+		</div>
+	</div>
+
+</div>
+	
 
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/enigma.js"></script>

@@ -5,6 +5,10 @@ body {
     text-align: center;
 }
 
+.enigma{
+	margin-top: 50px;
+}
+
 /*KEYBOARD*/
 #keyboard{
 	background-color: #373737;
@@ -14,7 +18,7 @@ body {
 	border-radius: 5px;
 	padding-top: 5px;
 	padding-bottom: 5px;
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
 #keyboard div.row1{
@@ -69,7 +73,7 @@ body {
 	border-radius: 5px;
 	padding-top: 5px;
 	padding-bottom: 5px;
-	margin-top: 20px;
+	margin-top: 10px;
 	border-style: solid;
 	border-width: 1px;
 	border-color: gray;
@@ -127,9 +131,193 @@ body {
 	background-color: #f1dea5;
 	color: black;
 	font-weight: bold;
-	margin-top: 100px;
+	margin-top: 10px;
 	line-height: 100px;
 	overflow: auto;
 }
+
+
+/*PLUGBOARD*/
+
+
+#plugboard{
+	width: 543px;
+	height: 60px;
+	border-radius: 5px;
+	margin: 0 auto;
+	background-color: #3a3a3a;
+	padding:5px;
+	margin-top: 2px;
+}
+
+.plug{	
+	background-color: white;
+	width: 28px;
+	height: 50px;	
+	border-radius: 5px;
+	padding: 2px;
+	float: left;
+	margin-left: 5px;
+}
+
+.plug .slot{
+	width: 20px;
+	height: 20px;
+	border-radius: 5px;
+	background-color: dimgray;
+	color: whitesmoke;
+	margin: 2px;
+	float: left;
+	font-size: 10px;
+	line-height: 20px;
+	text-align: center;
+}
+
+
+/*ROTOR*/
+.rotor-container{
+	width: 315px;
+	height: 100px;
+	margin: 0 auto;
+}
+
+.rotor{
+	position: relative;
+	width: 100px;
+	height: 100px;
+	border-radius: 100%;
+	background-color: white;	
+	float: left;
+	margin-left: 5px;
+	
+}
+
+.rotor .inner{
+	border-radius: 100%;
+	position: absolute;
+	top: 10px;
+	left: 10px;	
+	text-align: center;
+	line-height: 80px;
+	font-size: 20px;	
+	font-weight: bolder;
+	height: 80px;
+	width: 80px;
+	background-color: whitesmoke;
+}
+
+.rotor .outer{
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-radius: 100%;
+	width: 100px;
+	height: 100px;
+	border-radius: 100%;
+	border-style: dotted;
+	border-color: black;
+	border-width: 10px;
+	background-color: transparent;
+}
+
+
+/*CONTROLS CONFIGURATION*/
+.control-panel{
+	position: absolute;
+	top: 40%;
+	left: -5px;
+	
+	box-shadow: 1px 1px 2px #373737;
+	border-radius: 5px;
+	background-color: #4CAF50;
+	padding:5px;
+	padding-left: 10px;
+}
+
+.control-button{
+	background-color: #3a3a3a;
+	height: 40px;
+	width: 40px;
+	border-radius: 5px;
+	line-height: 40px;
+	font-size: 10px;
+	color: white;
+	cursor: pointer;
+	margin-bottom: 5px;
+}
+
+.control-button:hover{
+	background-color: black;
+}
+
+
+/*CONFIG WINDOW*/
+#back{
+	position: absolute;
+	top: 0;
+	left: 0;	
+	width: 100%;
+	height: 100%;
+	background-color: whitesmoke;
+	opacity: 0.9;
+}
+
+.config-title{		
+	width: 400px;
+	height: 30px;
+	background-color: black;
+	margin: 0 auto;
+	margin-top: 20%;
+	border-radius: 5px;
+	margin-bottom: -5px;
+	color: white;
+	font-size: 12px;
+	line-height: 30px;
+
+}
+
+.config-window{		
+	position: relative;
+	padding:10px;
+	width: 400px;
+	height: 200px;
+	background-color: #3a3a3a;
+	margin: 0 auto;	
+	font-size: 12px;	
+}
+
+.config-window input{
+	width: 50px;
+	padding:5px;
+	border-radius: 5px;
+
+}
+
+.config-window label{
+	color: white;
+}
+
+#config-close{	
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0 auto;
+	margin-left: 370px;
+	margin-top: -30px;
+	width: 40px;
+	height: 40px;
+	border-radius: 100%;
+	background-color: whitesmoke;
+	border-style: solid;
+	border-width: 2px;
+	line-height: 40px;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+#config-close:hover{
+	background-color: white;
+}
+
 
 
