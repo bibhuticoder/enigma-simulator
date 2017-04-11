@@ -16,3 +16,8 @@ Don't know what it is ? here : https://www.youtube.com/watch?v=G2_Q9FoD-oQ
 - the plugboard is still in progress but the simulation works fine as a normal enigma machine
 
 https://bibhuticoder.github.io/enigma-simulator/
+
+
+## screenshot
+#Screenshot
+![Alt text](/scn.png)
