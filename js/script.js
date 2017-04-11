@@ -59,12 +59,9 @@ function applyEvents(){
 		$("div.light[data-data='"+coded+"']").addClass("light-on");
 		setTimeout(function(){
 			$(".light").removeClass("light-on");	
-
-
 			rotate(1, enigma.r1.level);			
 			rotate(2, enigma.r2.level);
-			rotate(3, enigma.r3.level);
-			
+			rotate(3, enigma.r3.level);			
 		}, 200);
 		output();
 
@@ -86,9 +83,9 @@ $("#config-close").click(function(){
 $(".rotor-input").keyup(function(){
 	var level = parseInt($(this).val());
 	if(level > 26) level = 26;
-	if(level <= 0 || isNaN(level)) level = 1;
-	var id = $(this).attr("id");	
-	enigma["r"+id].set(level);
+	if(level <= 0 || isNaN(level)) level = 0;
+	var id = $(this).attr("id");
+	enigma["r"+id].level = level;
 	rotate(id, enigma["r"+id].level);
 })
 
@@ -100,11 +97,14 @@ function rotate(rotor, level){
 	    "transform": "rotate("+angle+"deg)"
 	});
 
+	enigma["r"+rotor].set(level);
+	console.log("---" + level);
 	$("#rotor"+rotor+" .inner").text(level);
 }
 
 function output(){
 	$("#output").text(encrypted);
+	return;
 }
 
 function clear(){
@@ -116,31 +116,27 @@ function clear(){
 
 function showConfigWindow(){
 	$("#back").fadeIn(200);
+
+	//rotor settings
 	$(".rotor-input[id=1]").val(enigma.r1.level);
 	$(".rotor-input[id=2]").val(enigma.r2.level);
 	$(".rotor-input[id=3]").val(enigma.r3.level);
+
+	//plugboard
+	
 }
 
 function hideConfigWindow(){
 	$("#back").fadeOut(100);
+	return;
 }
 
 loadKeyboard("keyboard", "key");
-
 loadKeyboard("lightboard", "light");
-
-// $("#info").html(`
-// 	<label> Gears :  ${enigma.r1.level}, ${enigma.r2.level}, ${enigma.r3.level}
-// `);
-
 loadPlugboard();
-
 hideConfigWindow();
 
-rotate(1, enigma.r1.level);
-rotate(2, enigma.r2.level);
-rotate(3, enigma.r3.level);
-
-
-
-
+//initial settings
+rotate(1, 25);
+rotate(2, 3);
+rotate(3, 3);

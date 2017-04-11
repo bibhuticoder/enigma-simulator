@@ -220,6 +220,28 @@ body {
 	background-color: transparent;
 }
 
+.rotor .input{
+	position: absolute;
+	top: -40px;
+	left: 30px;
+	background-color: #373737;
+	height: 40px;
+	width: 40px;
+	color: white;
+	z-index: 5;
+}
+
+.rotor .output{
+	position: absolute;
+	top: 100px;
+	left: 30px;
+	background-color: #373737;
+	height: 40px;
+	width: 40px;
+	color: white;
+	z-index: 5;
+}
+
 
 /*CONTROLS CONFIGURATION*/
 .control-panel{

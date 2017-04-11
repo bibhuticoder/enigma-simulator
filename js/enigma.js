@@ -1,43 +1,91 @@
 
 //-----------------------------------------------
-function Rotor(){	
-	this.arr = getAlphabets();	
+function Rotor(mapper){	
+	this.wheel = getAlphabets();	
 	this.level = 1;		
+	this.mapper = mapper;	
 }
 
 Rotor.prototype.levelUp = function(){
-
-	//save last value
-	var last = this.arr[this.arr.length-1];
-
-	//make new shuffled array
+	var first = this.wheel[0];
 	var n = new Array();
-	n.push(last);
-
-	//bubble up all values
-	for(var i=0; i<this.arr.length-1; i++){
-		n.push(this.arr[i]);	
-	}
-
-	this.arr = n;
+	for(var i=1; i<this.wheel.length; i++) n.push(this.wheel[i]);		
+	n.push(first);
+	this.wheel = n;
 	this.level++;
 }
 
 Rotor.prototype.get = function(code){	
-	return this.arr[getAlphabets().indexOf(code)];
+	var i =  this.wheel.indexOf(code);
+	return this.mapper[i];
+}
+
+Rotor.prototype.getRev = function(code){
+	var i =  this.mapper.indexOf(code);
+	return this.wheel[i];
 }
 
 Rotor.prototype.set = function(l){
-	this.level = l;	
-	console.log("level set to " + this.level + " : " + l);
+	this.wheel = getAlphabets();	
+	this.level = 1;
+	for(var i=1; i<l; i++) this.levelUp();		
+	this.level = l;
 }
 //ROTOR END---------------------------------------
 
 
-//---------------------------------------------
-function Plugboard(){
-	this.slots = {};
+//------------------------------------------------
+function Reflector(){
+	var s = "EJMZALYXVBWFCRQUONTSPIKHGD";	
+	this.mapping = [];
 
+	for(var i=0; i<s.length; i++){
+		this.mapping.push(s[i]);
+	}
+}
+
+Reflector.prototype.reflect = function(code){
+	var i = getAlphabets().indexOf(code);
+	return this.mapping[i];
+}
+// REFLECTOR END
+
+
+
+//-------------------------------------------------
+function Plugboard(){
+	this.slots = {
+		"A": "W",
+		"B": "B", //
+		"C": "V",
+		"D": "F",
+		"E": "Z",
+		"F": "D",
+		"G": "G", //
+		"H": "U",
+		"I": "S",
+		"J": "Q",
+		"K": "K", //
+		"L": "O",
+		"M": "M", //
+		"N": "R",
+		"O": "L",
+		"P": "X",
+		"Q": "J",
+		"R": "N",
+		"S": "I",
+		"T": "T", //
+		"U": "H",
+		"V": "C",
+		"W": "A",
+		"X": "P",
+		"Y": "Y", //
+		"Z": "E",
+	}
+	
+}
+
+Plugboard.prototype.randomize = function(){
 	//make random empty slots
 	var a = getAlphabets();
 	var b = getAlphabets();
@@ -70,41 +118,54 @@ function Plugboard(){
 }
 
 Plugboard.prototype.get = function(code){
-	return(this.slots[code]);
-}
+	if(this.slots[code]) return(this.slots[code]);
+	else{
 
-Plugboard.prototype.set = function(p1, p2){
-	this.slots[p1] = p2;
-	this.slots[p2] = p1;
+    for( var prop in this.slots ) {
+        if( this.slots.hasOwnProperty( prop ) ) {
+             if( this.slots[ prop ] === code )
+                 return prop;
+        }
+    }
+
+
+	}
 }
-//PLUGBOARD END---------------------------------
+// PLUGBOARD END
+
+
 
 
 //------------------------------------------------
 function Enigma(){
 
 	//rotor 3
-	this.r3 = new Rotor();
-	this.r3.set(random(0,26));
-
-	//rotor 2
-	this.r2 = new Rotor();
-	this.r2.set(random(0,26));
-
-	//rotor 1
-	this.r1 = new Rotor();
-	this.r1.set(random(0,26));
-	
-	//rotor plugboard
+	this.r3 = new Rotor(["D","M","T","W","S","I","L","R","U","Y","Q","N","K","F","E","J","C","A","Z","B","P","G","X","O","H","V"]);	
+	//rotor 2 
+	this.r2 = new Rotor(["H","Q","Z","G","P","J","T","M","O","B","L","N","C","I","F","D","Y","A","W","V","E","U","S","R","K","X"]);	
+	//rotor 1 
+	this.r1 = new Rotor(["E","K","M","P","L","G","D","Q","V","Z","N","T","O","W","Y","H","X","U","S","F","A","I","B","R","C","J"]);
 	this.plugboard = new Plugboard();
-
+	this.reflector = new Reflector();
 	
 }
 
 Enigma.prototype.input = function(code){
-	var round1 = this.plugboard.get(this.r3.get(this.r2.get(this.r1.get(code))));
-	var round2 = this.plugboard.get(this.r1.get(this.r2.get(this.r3.get(round1))));
 
+	var plug1 = this.plugboard.get(code);
+	var r11 = this.r1.get(plug1);
+	var r21 = this.r2.get(r11);
+	var r31 = this.r3.get(r21);
+
+	var reflected = this.reflector.reflect(r31)
+	
+	var r32 = this.r3.getRev(reflected);
+	var r22 = this.r2.getRev(r32);
+	var r12 = this.r1.getRev(r22);
+	var plug2 = this.plugboard.get(r12);
+
+	console.log(code + " - plug1: " + plug1 + " r11: " + r11 + ", r21: " + r21 + ", r31: " + r31 + ", r32: " + r32 + ", r22: " + r22 + ", r12: " + r12 + ", plug2: " + plug2);
+	
 	//rotate rotors
 	this.r1.levelUp();
 	if(this.r1.level > 26){
@@ -117,12 +178,10 @@ Enigma.prototype.input = function(code){
 		}
 	}
 	
+	return plug2;
 
-	return round2;
 }
 //ENIGMA END---------------------------------------
-
-
 
 
 function getAlphabets(){
@@ -136,5 +195,3 @@ function getAlphabets(){
 function random(min, max){        
 	return (Math.floor(Math.random() * (max - min + 1)) + min);
 }
-
-
